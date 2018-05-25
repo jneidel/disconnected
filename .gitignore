@@ -1,0 +1,8 @@
+node_modules/
+public/js
+public/css
+*.env
+todo.md
+
+readme.md
+license

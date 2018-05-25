@@ -1,0 +1,39 @@
+{
+  "name": "school",
+  "version": "0.0.0",
+  "description": "",
+  "repository": "jneidel/school",
+  "license": "MIT",
+  "author": {
+    "name": "Jonathan Neidel",
+    "email": "jneidel@outlook.com",
+    "url": "https://jneidel.com"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run watch\" \"npm run build\" --names \"💻,📦️\" --prefix name",
+    "watch": "nodemon app.js --ignore dist/js/ --ignore tests/ --trace-sync-io",
+    "build": "webpack -w",
+    "prod": "node -r dotenv/config app.js dotenv_config_path=vars.env"
+  },
+  "dependencies": {
+    "axios": "latest",
+    "body-parser": "latest",
+    "connect-flash": "latest",
+    "compression": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "express-session": "latest",
+    "express-sessions": "latest",
+    "helmet": "latest",
+    "mongoose": "latest",
+    "mongoose-mongodb-errors": "latest",
+    "normalize-scss": "latest",
+    "pug": "latest"
+  },
+  "devDependencies": {
+    "concurrently": "latest",
+    "morgan": "latest",
+    "nodemon": "latest",
+    "setup-webpack": "latest"
+  }
+}

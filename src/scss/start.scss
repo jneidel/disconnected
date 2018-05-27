@@ -1,0 +1,33 @@
+@import "mixins/_buttons.scss";
+@import "mixins/_forms.scss";
+
+body {
+  margin: 0;
+}
+
+#inner {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: $green;
+  color: $black;
+  text-align: left;
+}
+
+$ipt-width: 200px;
+$ipt-padding: 10px;
+
+button {
+  @include btn-submit( $ipt-width, $ipt-padding ) 
+}
+
+input[type="text"], input[type="number"] {
+  @include form-input( $ipt-width, $ipt-padding, 30px, $fs-text )
+}
+
+input[type="radio"] {
+  margin-bottom: 30px - $fs-text;
+}

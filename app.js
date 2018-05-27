@@ -22,6 +22,8 @@ if ( NODE_ENV === "dev" ) {
   app.use( logger.writeRequests );
 }
 
+const Participant = require( "./models/participant" );
+
 mongoose.Promise = global.Promise;
 mongoose.plugin( mongodbErrorHandler );
 mongoose.connect( process.env.MONGO );

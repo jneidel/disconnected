@@ -9,7 +9,7 @@ const sync = browserSync( 8000, 8080 );
 
 const config = [];
 
-[ "welcome" ].forEach( ( name ) => {
+[ "welcome", "line", "start" ].forEach( ( name ) => {
   const scss = genScss( `../css/${name}.css` );
   const entryPath = `./src/bundles/${name}.bundle.js`;
 
@@ -22,12 +22,12 @@ const config = [];
     },
     module: {
       rules: prod ?
-        [ babel, scss.rule ] :
-        [ scss.rule ],
+        [ babel, scss.rule, scss.font ] :
+        [ scss.rule, scss.font ],
     },
     plugins: prod ?
       [ scss.plugin ] :
-      [ scss.plugin, sync ],
+      [ scss.plugin ],
     optimization: {
       minimize : true,
       minimizer: [ scss.minimizer ],

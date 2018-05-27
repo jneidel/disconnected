@@ -1,0 +1,19 @@
+extends layout
+
+block styles
+  link( rel="stylesheet" type="text/css" href="css/start.css" )
+
+block content
+  label( for="name" ) Name
+  input#name( type="text" required )
+  label( for="age" ) Alter
+  input#age( type="number" required )
+  div
+    label( for="male" ) Man
+    input#male( type="radio" name="gender" )
+    label( for="female" ) Frau
+    input#female( type="radio" name="gender" checked )
+  button#next Weiter
+
+block scripts
+  script( src="js/start.js" )

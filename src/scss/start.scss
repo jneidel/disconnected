@@ -12,22 +12,27 @@ body {
   justify-content: center;
   align-items: center;
 
-  background: $green;
+  background-image: linear-gradient( 26deg, $green, $blue );
   color: $black;
   text-align: left;
 }
 
 $ipt-width: 200px;
 $ipt-padding: 10px;
+$ipt-marbot: 30px;
 
 button {
   @include btn-submit( $ipt-width, $ipt-padding ) 
 }
 
 input[type="text"], input[type="number"] {
-  @include form-input( $ipt-width, $ipt-padding, 30px, $fs-text )
+  @include form-input( $ipt-width, $ipt-padding, $ipt-marbot, $fs-text )
 }
 
 input[type="radio"] {
-  margin-bottom: 30px - $fs-text;
+  margin-bottom: $ipt-marbot - $fs-text;
+}
+
+label {
+  font-size: $fs-text;
 }

@@ -21,4 +21,8 @@
     background: rgba( $white, 0.25 );
     border: 1px solid darken( $white, 10 );
   }
+
+  @media all and (max-width: 500px) {
+    font-size: $fs-mobile; 
+  }
 }

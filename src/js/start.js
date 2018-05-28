@@ -3,9 +3,11 @@ const byId = ipt => document.getElementById( ipt );
 
 function getValues() {
   return {
-    name: byId( "name" ).value,
-    age : byId( "age" ).value,
-    male: byId( "male" ).checked,
+    name       : byId( "name" ).value,
+    age        : byId( "age" ).value,
+    male       : byId( "male" ).checked,
+    startingAge: byId( "startingAge" ).value,
+    time       : byId( "time" ).value,
   };
 }
 

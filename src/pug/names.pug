@@ -1,0 +1,11 @@
+extends layout
+
+block styles
+  link( rel="stylesheet" type="text/css" href="css/names.css" )
+
+block content
+  h1 Die letzten Teilnehmer:
+  ul
+    for participant in names
+      li
+        a( href=participant.url )=participant.name

@@ -1,6 +1,3 @@
-exports.add = ( db, userId, key, value ) =>
-  db.findOneAndUpdate( { _id: userId }, { $set: { [key]: value } } );
-
 exports.create = async ( db, data ) => {
   const user = new db( data );
   const createdUser = await user.save();
@@ -17,6 +14,7 @@ exports.getAll = async db => {
       gender     : 1,
       startingAge: 1,
       time       : 1,
+      timestamp  : 1,
     } },
   ] );
 
@@ -35,6 +33,28 @@ exports.getAll = async db => {
 
     return acc;
   }, { ages: [], genders: { male: 0, female: 0 }, startingAges: [], times: [] } );
+
+  return data;
+};
+
+exports.listUsers = async ( db ) => {
+  const rawData = await db.aggregate( [
+    { $match: {} },
+    {
+      $sort: {
+        timestamp: -1,
+      },
+    },
+    { $project: {
+      _id : 1,
+      name: 1,
+    } },
+  ] );
+
+  const data = rawData.map( x => {
+    x.url = `stats?id=${x._id}`;
+    return x;
+  } );
 
   return data;
 };

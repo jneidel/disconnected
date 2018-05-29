@@ -25,6 +25,10 @@ const schema = new mongoose.Schema( {
     verify: x => x > 0 && x < 1440,
     alias : "timeSpent",
   },
+  timestamp: {
+    type   : Date,
+    default: Date.now,
+  },
 } );
 
 module.exports = mongoose.model( "participants", schema );

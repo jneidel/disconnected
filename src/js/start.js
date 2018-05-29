@@ -12,11 +12,10 @@ function getValues() {
 }
 
 const next = byId( "next" );
-next.addEventListener( "click", async ( e ) => {
+next.addEventListener( "click", e => {
   const data = getValues();
 
-  const id = await axios.post( "/api/create", data )
-    .then( response => response.data.id );
+  const id = axios.post( "/api/create", data );
 
-  window.location.replace( `/line?id=${id}` );
+  window.location.replace( `/finish` );
 } );

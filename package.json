@@ -32,12 +32,13 @@
     "mongoose": "^5.1.2",
     "mongoose-mongodb-errors": "latest",
     "normalize-scss": "latest",
-    "pug": "latest"
+    "pug": "latest",
+    "py-range": "^1.0.0"
   },
   "devDependencies": {
     "concurrently": "latest",
     "morgan": "latest",
     "nodemon": "^1.17.5",
-    "setup-webpack": "^2.1.0"
+    "setup-webpack": "^2.2.0"
   }
 }

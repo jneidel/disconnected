@@ -1,0 +1,18 @@
+body {
+  max-width: 100vw;
+  min-height: 80vh;
+  padding: 10vh 10vw;
+}
+
+li {
+  font-size: 1.2rem;
+
+  a {
+    text-decoration: none;
+    color: $white;
+
+    &:hover {
+      background: $black;
+    }
+  }
+}

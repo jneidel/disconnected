@@ -1,17 +1,15 @@
 @import "mixins/_buttons.scss";
 @import "mixins/_forms.scss";
 
-$fs-text: 38px;
+$fs-text: 42px;
 
 html {
   font-size: $fs-text;
 }
 
 body {
-  max-width: 100vw;
   min-height: 80vh;
   padding: 10vh 10vw;
-  //align-items: center;
 }
 
 $ipt-width: 80vw;
@@ -19,7 +17,7 @@ $ipt-padding: 10px;
 $ipt-marbot: 60px;
 
 button {
-  margin-top: 20px;
+  margin-top: 40px;
   @include btn-submit( $ipt-width, $ipt-padding ) 
 }
 

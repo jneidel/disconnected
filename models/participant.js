@@ -9,7 +9,7 @@ const schema = new mongoose.Schema( {
   },
   age: {
     type  : Number,
-    verify: x => x > 0 && x < 100,
+    verify: x => x > 0 && x < 81,
   },
   startingAge: {
     type  : Number,

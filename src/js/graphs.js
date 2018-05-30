@@ -6,7 +6,7 @@ const zip = rows => rows[0].map( ( _, c ) => rows.map( row => row[c] ) ); // Equ
 
 const generateData = {
   ageToTime: data => {
-    const lifeExpectancy = data.gender ? 85 : 90;
+    const lifeExpectancy = 81;
     const timePerYear = data.time * 356;
 
     const ages = range( data.startingAge, lifeExpectancy + 1 );
@@ -27,6 +27,7 @@ const generateData = {
       insta   : { name: "Instagram", color: "#7700ff" },
       nf      : { name: "Netflix", color: "#b21111" },
       steam   : { name: "Steam", color: "#333" },
+      cr      : { name: "Clash Royale", color: "#2dd100" },
     };
 
     const services = Object.keys( rawData )
@@ -49,6 +50,7 @@ const generateData = {
 exports.generateData = generateData;
 
 function insertDots( str, seperator = ".", splitAt = 3 ) {
+  str = Math.floor( str );
   const rev = String( str ).split( "" ).reverse();
   const dots = Math.floor( rev.length / splitAt );
   const end = rev.length;
@@ -67,6 +69,7 @@ function insertDots( str, seperator = ".", splitAt = 3 ) {
 
   return out;
 }
+exports.insertDots = insertDots;
 
 exports.line = data => {
   const graph = d3.select( "#graph" );

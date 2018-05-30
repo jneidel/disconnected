@@ -7,7 +7,7 @@
   width: $width;
   font-size: $fs-text;  
   color: $white;
-  background: transparent;
+  background: rgba( $color: $white, $alpha: .25 );
   border: 1px solid $white;
   border-radius: 3px;
   outline: none;

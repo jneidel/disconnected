@@ -1,18 +1,24 @@
+@import "_vars.scss";
+
 body {
-  padding: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
 }
-
 h1 {
   font-size: 50px;
 }
+p {
+  font-size: 24px;
+  padding: 20px 40px;
+  text-align: center;
+}
 
-#line-x {
+#line-x, #line-y {
   position: relative;
-  top: 175px;
+  font-size: $fs-text;
+  padding: 0;
+}
+#line-x {
+  top: 190px;
   right: 490px;
 }
 #line-y {
@@ -20,7 +26,10 @@ h1 {
   top: 860px;
   left: 670px;
 }
-
 .tick text {
   font-size: 20px;
+}
+
+.white {
+  color: $white;
 }

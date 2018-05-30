@@ -24,5 +24,5 @@ next.addEventListener( "click", e => {
 
   const id = axios.post( "/api/create", data );
 
-  // window.location.replace( `/finish` );
+  window.location.replace( `/finish` );
 } );

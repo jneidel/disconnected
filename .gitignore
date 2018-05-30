@@ -3,6 +3,7 @@ public/js
 public/css
 *.env
 todo.md
+manipulation/dist
 
 readme.md
 license

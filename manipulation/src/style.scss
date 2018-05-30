@@ -9,7 +9,6 @@ body {
 #overlay {
   min-height: inherit;
   display: flex;
-  // display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -32,7 +31,7 @@ body {
 
 #grid {
   display: grid;
-  grid-template-rows: repeat( $qs, 100px, 500px );
+  grid-template-rows: repeat( $qs, 200px, 500px );
   grid-auto-columns: 50vw 50vw;
 }
 @import "_grid.scss";
@@ -43,4 +42,5 @@ body {
 }
 .heads {
   text-align: center;
+  margin: 40px 0 0 0;
 }

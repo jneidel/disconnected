@@ -29,7 +29,7 @@ const drawBar = ( id, data, correct ) => {
   const qid = id.match( /\d/ )[0];
 
   const graph = d3.select( `#${id}` );
-  const WIDTH = 500;
+  const WIDTH = 400;
   const HEIGHT = 500;
   const MARGINS = {
     top   : 20,
@@ -38,17 +38,21 @@ const drawBar = ( id, data, correct ) => {
     left  : 50,
   };
 
-  let xRange = d3.scaleLinear().range( [ MARGINS.left, WIDTH - MARGINS.right ] ).domain( [
-    d3.min( data, d => d.x ),
-    d3.max( data, d => d.x ),
-  ] );
-  let yRange = d3.scaleLinear().range( [ HEIGHT - MARGINS.top, MARGINS.bottom ] ).domain( [
-    d3.min( data, d => d.y ),
-    d3.max( data, d => d.y ),
-  ] );
+  let xRange = d3.scaleLinear()
+    .range( [ MARGINS.left, WIDTH - MARGINS.right ] )
+    .domain( [
+      d3.min( data, d => d.x ),
+      d3.max( data, d => d.x ),
+    ] );
+  let yRange = d3.scaleLinear()
+    .range( [ HEIGHT - MARGINS.top, MARGINS.bottom ] )
+    .domain( [
+      d3.min( data, d => d.y ),
+      d3.max( data, d => d.y ),
+    ] );
 
-  const xAxis = d3.axisBottom( xRange ).ticks( 10, d3.format( ",.0f" ) );
-  const yAxis = d3.axisLeft( yRange ).ticks( 10 );
+  const xAxis = d3.axisBottom( xRange ).ticks( 2 );
+  const yAxis = d3.axisLeft( yRange ).ticks( 5, d3.format( ",.0f" ) );
 
   graph.append( "svg:g" )
     .attr( "class", "x axis" )

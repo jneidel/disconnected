@@ -24,6 +24,7 @@
     "compression": "latest",
     "connect-flash": "latest",
     "d3": "^5.4.0",
+    "d3pie": "^0.2.1",
     "dotenv": "latest",
     "express": "latest",
     "express-session": "latest",
@@ -39,6 +40,6 @@
     "concurrently": "latest",
     "morgan": "latest",
     "nodemon": "^1.17.5",
-    "setup-webpack": "^2.2.0"
+    "setup-webpack": "^2.2.1"
   }
 }

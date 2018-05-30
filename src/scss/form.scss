@@ -27,13 +27,13 @@ input[type="text"], input[type="number"] {
   @include form-input( $ipt-width, $ipt-padding, $ipt-marbot, $fs-text )
 }
 
-input[type="radio"] {
+input[type="checkbox"] {
   margin-bottom: $ipt-marbot - $fs-text;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 
-  border-radius: 50%;
+  border-radius: 0%;
   width: 24px;
   height: 24px;
 
@@ -57,4 +57,14 @@ label {
 
 .fs-small {
   font-size: .6rem;
+}
+
+.group, label:first-of-type {
+  margin-right: 20px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat( 2, 1fr );
+  grid-template-rows: repeat( 4, 60px );
 }

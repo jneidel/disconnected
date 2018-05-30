@@ -9,7 +9,7 @@ const sync = browserSync( 8000, 8080 );
 
 const config = [];
 
-[ "welcome", "line", "start", "names", "finish" ].forEach( ( name ) => {
+[ "welcome", "line", "form", "names", "finish" ].forEach( ( name ) => {
   const scss = genScss( `../css/${name}.css` );
   const entryPath = `./src/bundles/${name}.bundle.js`;
 

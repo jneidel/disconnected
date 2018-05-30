@@ -1,0 +1,39 @@
+$qs: 7;
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+#overlay {
+  min-height: inherit;
+  //display: flex;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+#overlay-ipt {
+  width: 80vw;   
+  height: 80vh;
+  margin: 5vh 5vw;
+}
+
+#content {
+  // display: none;
+}
+
+#grid {
+  display: grid;
+  grid-template-rows: repeat( $qs, 100px, 500px );
+  grid-auto-columns: 50vw 50vw;
+}
+@import "_grid.scss";
+
+.bars {
+  width: 50vw;
+  height: 500px;
+}
+.heads {
+  text-align: center;
+}

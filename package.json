@@ -16,7 +16,8 @@
     "start": "concurrently \"npm run watch\" \"npm run build\" --names \"💻,📦️\" --prefix name",
     "watch": "nodemon app.js --ignore dist/js/ --ignore tests/ --trace-sync-io",
     "build": "webpack -w",
-    "prod": "node -r dotenv/config app.js dotenv_config_path=vars.env"
+    "prod": "node -r dotenv/config app.js dotenv_config_path=vars.env",
+    "manip": "webpack -w --config manipulation/webpack.config.js"
   },
   "dependencies": {
     "axios": "latest",

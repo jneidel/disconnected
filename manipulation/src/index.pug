@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    meta( charset="UTF-8" )
+    title= `Manipulated | #disconnected`
+    link( href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet")
+    link( rel="stylesheet" type="text/css" href="index.css" )
+
+  body
+    #overlay
+      textarea#overlay-ipt( cols="30" rows="10" )
+    #content
+      p Wir haben veruscht, in den letzten zwei Räaumen bewusst durch Experimente manipuliert. Mehr oder weniger lassen sich Menscehn durch Gruppenzwang beeiflussen. In Situationen wo Menschen sich unsicher sind, schließen sie sich gern der Gruppe an, auch wenn es Ihnenen nicht immer sinnvoll erscheint. Dies funktioniert auch über soziale Netzwerk. Ob Ihr euch manipulieren lassen habt, seht ihr nun in der folgenden Statistik.
+      #grid
+        for x in [{"qtext":"Leckerste Frucht?","q":"head0","b1":"bar0a","b2":"bar0b"},{"qtext":"Schönste Stadt?","q":"head1","b1":"bar1a","b2":"bar1b"},{"qtext":"Bestes Foto?","q":"head2","b1":"bar2a","b2":"bar2b"},{"qtext":"Was ist deine Lieblings Social Media Plattform?","q":"head3","b1":"bar3a","b2":"bar3b"},{"qtext":"Seit wann gibt es Google?","q":"head4","b1":"bar4a","b2":"bar4b"},{"qtext":"Was enthält am meisten Eisen?","q":"head5","b1":"bar5a","b2":"bar5b"},{"qtext":"Was schmeckt besser?","q":"head6","b1":"bar6a","b2":"bar6b"},{"qtext":"Wie viele Mitglieder hat Facebook?","q":"head7","b1":"bar7a","b2":"bar7b"},{"qtext":"Welchen Beruf lernte Stefan Raab ursprünglich?","q":"head8","b1":"bar8a","b2":"bar8b"},{"qtext":"Welche Stadt der Welt hat die meisten Einwohner?","q":"head9","b1":"bar9a","b2":"bar9b"}]
+          h3.heads( id=x.q )=x.qtext
+          svg.bars( id=x.b1 )
+          svg.bars( id=x.b2 )
+
+    script( src="index.js" )
+    style.
+      html {
+        box-sizing: border-box;
+      }
+      *:not( img ), *:before, *:after {
+        box-sizing: inherit;
+      }

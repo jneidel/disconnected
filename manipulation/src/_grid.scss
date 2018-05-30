@@ -1,0 +1,114 @@
+#grid {
+  grid-template-areas:
+    "head0 head0"
+    "bar0a bar0b"
+    "head1 head1"
+    "bar1a bar1b"
+    "head2 head2"
+    "bar2a bar2b"
+    "head3 head3"
+    "bar3a bar3b"
+    "head4 head4"
+    "bar4a bar4b"
+    "head5 head5"
+    "bar5a bar5b"
+    "head6 head6"
+    "bar6a bar6b"
+    "head7 head7"
+    "bar7a bar7b"
+    "head8 head8"
+    "bar8a bar8b"
+    "head9 head9"
+    "bar9a bar9b";
+}
+
+#head0 {
+  grid-area: head0;
+}
+#bar0a {
+  grid-area: bar0a;
+}
+#bar0b {
+  grid-area: bar0b;
+}
+#head1 {
+  grid-area: head1;
+}
+#bar1a {
+  grid-area: bar1a;
+}
+#bar1b {
+  grid-area: bar1b;
+}
+#head2 {
+  grid-area: head2;
+}
+#bar2a {
+  grid-area: bar2a;
+}
+#bar2b {
+  grid-area: bar2b;
+}
+#head3 {
+  grid-area: head3;
+}
+#bar3a {
+  grid-area: bar3a;
+}
+#bar3b {
+  grid-area: bar3b;
+}
+#head4 {
+  grid-area: head4;
+}
+#bar4a {
+  grid-area: bar4a;
+}
+#bar4b {
+  grid-area: bar4b;
+}
+#head5 {
+  grid-area: head5;
+}
+#bar5a {
+  grid-area: bar5a;
+}
+#bar5b {
+  grid-area: bar5b;
+}
+#head6 {
+  grid-area: head6;
+}
+#bar6a {
+  grid-area: bar6a;
+}
+#bar6b {
+  grid-area: bar6b;
+}
+#head7 {
+  grid-area: head7;
+}
+#bar7a {
+  grid-area: bar7a;
+}
+#bar7b {
+  grid-area: bar7b;
+}
+#head8 {
+  grid-area: head8;
+}
+#bar8a {
+  grid-area: bar8a;
+}
+#bar8b {
+  grid-area: bar8b;
+}
+#head9 {
+  grid-area: head9;
+}
+#bar9a {
+  grid-area: bar9a;
+}
+#bar9b {
+  grid-area: bar9b;
+}

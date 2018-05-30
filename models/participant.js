@@ -7,10 +7,6 @@ const schema = new mongoose.Schema( {
     type: String,
     trim: true,
   },
-  gender: {
-    type : Boolean,
-    alias: "male",
-  },
   age: {
     type  : Number,
     verify: x => x > 0 && x < 100,
@@ -28,6 +24,9 @@ const schema = new mongoose.Schema( {
   timestamp: {
     type   : Date,
     default: Date.now,
+  },
+  services: {
+    type: Array,
   },
 } );
 

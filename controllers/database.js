@@ -15,6 +15,7 @@ exports.getAll = async db => {
       startingAge: 1,
       time       : 1,
       timestamp  : 1,
+      services   : 1,
     } },
   ] );
 
@@ -28,11 +29,12 @@ exports.getAll = async db => {
     if ( cur.time )
       acc.times.push( cur.time );
 
-    if ( cur.gender !== null )
-      acc.genders[cur.gender === true ? "male" : "female"]++;
+    if ( cur.services )
+      cur.services.forEach( service =>
+        acc.services[service] = acc.services[service] ? acc.services[service] + 1 : 1 );
 
     return acc;
-  }, { ages: [], genders: { male: 0, female: 0 }, startingAges: [], times: [] } );
+  }, { ages: [], services: {}, startingAges: [], times: [] } );
 
   return data;
 };
@@ -51,10 +53,12 @@ exports.listUsers = async ( db ) => {
     } },
   ] );
 
-  const data = rawData.map( x => {
-    x.url = `stats?id=${x._id}`;
-    return x;
-  } );
+  const data = rawData
+    .filter( x => x.name )
+    .map( x => {
+      x.url = `stats?id=${x._id}`;
+      return x;
+    } );
 
   return data;
 };

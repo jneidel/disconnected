@@ -1,7 +1,7 @@
 @import "mixins/_buttons.scss";
 @import "mixins/_forms.scss";
 
-$fs-text: 44px;
+$fs-text: 38px;
 
 html {
   font-size: $fs-text;
@@ -38,7 +38,6 @@ input[type="checkbox"] {
   height: 24px;
 
   border: 2px solid $white;
-  transition: 0.2s all linear;
   outline: none;
   margin-right: 8px;
   margin-left: 8px;
@@ -52,11 +51,7 @@ input[type="checkbox"] {
 }
 
 label {
-  font-size: 44px;
-}
-
-.fs-small {
-  font-size: .6rem;
+  font-size: $fs-text;
 }
 
 .group, label:first-of-type {

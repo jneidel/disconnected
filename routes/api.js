@@ -13,6 +13,7 @@ router.post( "/create", async ( req, res ) => {
     gender     : req.body.male,
     startingAge: req.body.startingAge,
     time       : req.body.time,
+    services   : req.body.services,
   };
 
   const id = await db.create( User, data );
@@ -21,7 +22,7 @@ router.post( "/create", async ( req, res ) => {
 } );
 
 router.get( "/get-all", async ( req, res ) => {
-  const data = await db.getAll();
+  const data = await db.getAll( User );
 
   return res.json( { data, err: null } );
 } );

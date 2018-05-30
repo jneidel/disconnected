@@ -8,18 +8,14 @@ router.get( "/", ( req, res ) => res.render( "welcome", { title: "#disconnected"
 router.get( "/form", ( req, res ) => res.render( "form", { title: "Willkommen" } ) );
 router.get( "/finish", ( req, res ) => res.render( "finish", { title: "Finish" } ) );
 
-router.get( "/line",
-  u.hasId,
-  async ( req, res, next ) => {
-    const data = await db.getAll( User );
-    next();
-  },
-  ( req, res ) => res.render( "line", { title: "Line" } )
-);
-
 router.get( "/stats",
   u.hasId,
-  ( req, res ) => res.render( "stats", { title: "Statistiken" } )
+  async ( req, res, next ) => {
+    req.user = await db.getUser( User, req.query.id );
+
+    next();
+  },
+  ( req, res ) => res.render( "stats", { title: "Statistiken", name: req.user.name, user: req.user } )
 );
 
 router.get( "/names",
@@ -28,6 +24,10 @@ router.get( "/names",
 
     return res.render( "names", { title: "Namen", names: data } );
   }
+);
+
+router.get( "/all",
+  ( req, res ) => res.render( "all", { title: "Gesammelte Statistiken" } )
 );
 
 module.exports = router;

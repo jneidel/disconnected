@@ -2,21 +2,10 @@ const axios = require( "axios" );
 const byId = ipt => document.getElementById( ipt );
 
 function getValues() {
-  const fullServices = {
-    fb      : "Facebook",
-    yt      : "YouTube",
-    fortnite: "Fortnite",
-    snap    : "Snapchat",
-    twitter : "Twitter",
-    insta   : "Instagram",
-    nf      : "Netflix",
-    steam   : "Steam",
-  };
-
   const services = [ ...document.getElementsByName( "services" ) ]
     .map( x => ( { checked: x.checked, name: x.id.match( /s-(\w*)/ )[1] } ) )
     .filter( x => x.checked )
-    .map( x => fullServices[x.name] );
+    .map( x => x.name );
 
   return {
     name       : byId( "name" ).value,

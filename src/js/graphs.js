@@ -1,7 +1,10 @@
+const d3 = require( "d3" );
+window.d3 = d3;
+const d3pie = require( "d3pie" );
 const range = require( "py-range" );
 const zip = rows => rows[0].map( ( _, c ) => rows.map( row => row[c] ) ); // Equivalent to py-zip
 
-exports.generateGraphData = {
+const generateData = {
   ageToTime: data => {
     const lifeExpectancy = data.gender ? 85 : 90;
     const timePerYear = data.time * 356;
@@ -14,4 +17,112 @@ exports.generateGraphData = {
 
     return line;
   },
+  servicesPie: rawData => {
+    const fullServices = {
+      fb      : { name: "Facebook", color: "#006ed6" },
+      yt      : { name: "YouTube", color: "#e20404" },
+      fortnite: { name: "Fortnite", color: "#d1b100" },
+      snap    : { name: "Snapchat", color: "#d3d300" },
+      twitter : { name: "Twitter", color: "#00a9ff" },
+      insta   : { name: "Instagram", color: "#7700ff" },
+      nf      : { name: "Netflix", color: "#b21111" },
+      steam   : { name: "Steam", color: "#333" },
+    };
+
+    const services = Object.keys( rawData )
+      .map( service => ( { value: rawData[service], name: fullServices[service].name, color: fullServices[service].color } ) );
+
+    const data = {
+      content  : [],
+      sortOrder: "value-desc",
+    };
+
+    services.forEach( service => data.content.push( {
+      label: service.name,
+      value: service.value,
+      color: service.color,
+    } ) );
+
+    return data;
+  },
+};
+exports.generateData = generateData;
+
+exports.line = data => {
+  const graph = d3.select( "#graph" );
+  const WIDTH = 1000;
+  const HEIGHT = 500;
+  const MARGINS = {
+    top   : 20,
+    right : 20,
+    bottom: 20,
+    left  : 100,
+  };
+
+  const xRange = d3.scaleLinear()
+    .range( [ MARGINS.left, WIDTH - MARGINS.right ] )
+    .domain( [
+      d3.min( data, d => d.x ),
+      d3.max( data, d => d.x ),
+    ] )
+    .nice();
+  const yRange = d3.scaleLinear()
+    .range( [ HEIGHT - MARGINS.top, MARGINS.bottom ] )
+    .domain( [
+      d3.min( data, d => d.y ),
+      d3.max( data, d => d.y ),
+    ] )
+    .nice();
+
+  const xAxis = d3.axisBottom( xRange ).ticks( 10, d3.format( ",.0f" ) ).tickFormat( d => `${d}y` );
+  const yAxis = d3.axisLeft( yRange ).ticks( 10 ).tickFormat( d => `${d}m` );
+
+  graph.append( "svg:g" )
+    .attr( "class", "x axis" )
+    .attr( "transform", `translate(0,${HEIGHT - MARGINS.bottom})` )
+    .call( xAxis );
+
+  graph.append( "svg:g" )
+    .attr( "class", "y axis" )
+    .attr( "transform", `translate(${MARGINS.left},0)` )
+    .call( yAxis );
+
+  const lineFunc = d3.line()
+    .x( d => xRange( d.x ) )
+    .y( d => yRange( d.y ) )
+    .curve( d3.curveMonotoneX );
+
+  graph.append( "svg:path" )
+    .attr( "d", lineFunc( data ) )
+    .attr( "stroke", "blue" )
+    .attr( "stroke-width", 2 )
+    .attr( "fill", "none" );
+};
+
+exports.pie = rawData => {
+  const data = generateData.servicesPie( rawData.services );
+
+  const pie = new d3pie( "pie", {
+    header: {
+      title: {
+        text    : "Meistgenutzten Services",
+        fontSize: "38",
+      },
+      location: "top-right",
+    },
+    size: {
+      pieOuterRadius: "100%",
+      canvasHeight  : 700,
+      canvasWidth   : 1000,
+    },
+    labels: {
+      mainLabel: {
+        fontSize: 20,
+      },
+      percentage: {
+        fontSize: 20,
+      },
+    },
+    data,
+  } );
 };

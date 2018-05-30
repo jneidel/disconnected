@@ -5,7 +5,12 @@ block styles
 
 block content
   h1 Statistiken für #{name}
-  svg#graph( width="1000" height="500" )
+  h2 Medienverbrauch auf Lebenszeit, basieren auf aktueller Nutzung
+  div( style="position: absolute;" )
+    p#line-x Medienverbrauch (min)
+  div( style="position: absolute;" )
+    p#line-y Alter in Jahren
+  svg#graph( width="1200" height="700" )
 
 block scripts
   script( src="js/stats.js" )

@@ -9,3 +9,18 @@ body {
 h1 {
   font-size: 50px;
 }
+
+#line-x {
+  position: relative;
+  top: 175px;
+  right: 490px;
+}
+#line-y {
+  position: relative;
+  top: 860px;
+  left: 670px;
+}
+
+.tick text {
+  font-size: 20px;
+}

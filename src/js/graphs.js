@@ -48,15 +48,35 @@ const generateData = {
 };
 exports.generateData = generateData;
 
+function insertDots( str, seperator = ".", splitAt = 3 ) {
+  const rev = String( str ).split( "" ).reverse();
+  const dots = Math.floor( rev.length / splitAt );
+  const end = rev.length;
+
+  const ranges = range( 0, end + 1, splitAt ).map( x => range( x, x + splitAt + 1, splitAt ) );
+
+  let out = "";
+
+  ranges.reduce( ( acc, cur ) => {
+    out += rev.slice( cur[0], cur[1] ).join( "" );
+    out += cur[1] < end ? seperator : "";
+    return acc;
+  }, ranges[0] );
+
+  out = out.split( "" ).reverse().join( "" );
+
+  return out;
+}
+
 exports.line = data => {
   const graph = d3.select( "#graph" );
-  const WIDTH = 1000;
-  const HEIGHT = 500;
+  const WIDTH = 1200;
+  const HEIGHT = 700;
   const MARGINS = {
     top   : 20,
     right : 20,
-    bottom: 20,
-    left  : 100,
+    bottom: 32,
+    left  : 200,
   };
 
   const xRange = d3.scaleLinear()
@@ -75,7 +95,7 @@ exports.line = data => {
     .nice();
 
   const xAxis = d3.axisBottom( xRange ).ticks( 10, d3.format( ",.0f" ) ).tickFormat( d => `${d}y` );
-  const yAxis = d3.axisLeft( yRange ).ticks( 10 ).tickFormat( d => `${d}m` );
+  const yAxis = d3.axisLeft( yRange ).ticks( 10 ).tickFormat( d => `${insertDots( d )}m` );
 
   graph.append( "svg:g" )
     .attr( "class", "x axis" )
@@ -97,6 +117,9 @@ exports.line = data => {
     .attr( "stroke", "blue" )
     .attr( "stroke-width", 2 )
     .attr( "fill", "none" );
+
+  d3.selectAll( "#graph>.tick>text" )
+    .each( ( d, i ) => d3.select( this ).style( "font-size", 30 ) );
 };
 
 exports.pie = rawData => {

@@ -14,7 +14,8 @@ const qs = [
 ];
 
 /* ( function generatePug() {
-  const out = qs.map( x => ( { qtext: `${x.q}?`, q: `head${qs.indexOf( x )}`, b1: `bar${qs.indexOf( x )}a`, b2: `bar${qs.indexOf( x )}b` } ) );
+  const out = qs.map( x => ( { qtext: `${x.q}?`, q: `head${qs.indexOf( x )}`, b1: `bar${qs.indexOf( x )}a`, b2: `bar${qs.indexOf( x )}b`, options: `a: ${qs[qs.indexOf( x )].a.v}; b: ${qs[qs.indexOf( x )].b.v};${qs[qs.indexOf( x )].c ? ` c: ${qs[qs.indexOf( x )].c.v}` : ""}` } ) );
+  //  options: `a: ${qs[qs.indexOf( x )].a.v}; b: ${qs[qs.indexOf( x )].b.v};${qs[qs.indexOf( x )].c.v ? ` c: ${qs[qs.indexOf( x )].c.v}` : ""}`
 
   console.log( JSON.stringify( out ) );
 } )(); */

@@ -1,11 +1,19 @@
-$qs: 7;
+$black: #333;
+$green: #3BECAB;
+$blue: #15B7E4;
+$qs: 10;
 
 body {
   margin: 0;
   min-height: 100vh;
   min-width: 100vw;
+  background-image: linear-gradient( 26deg, $blue, $green );
+  color: $black;
+  padding: 30px;
+  padding-top: 0;
 }
 
+// Overlay
 #overlay {
   min-height: inherit;
   display: flex;
@@ -25,14 +33,34 @@ body {
   font-size: 55px;
 }
 
+// Content
 #content {
   display: none;
+}
+
+p {
+  padding: 40px;
+  padding-bottom: 0;
+  font-size: 24px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 33px;
+
+  p {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+  }
 }
 
 #grid {
   display: grid;
   grid-template-rows: repeat( $qs, 200px, 500px );
-  grid-auto-columns: 50vw 50vw;
+  grid-auto-columns: 40vw 40vw;
+  padding: 5vh 10vw;
+  padding-top: 0;
 }
 @import "_grid.scss";
 

@@ -75,9 +75,12 @@ overlaySubmit.addEventListener( "click", () => {
   }
 } );
 
+/*
 // Development
 const input = parseInput( `3,2,2\n5,1,0\n1,3,3\n6,1,0\n7,0,0\n1,2,4\n2,5\n5,0,2\n1,2,4\n2,3,2` );
 
 drawBars( content, bars, input );
 overlay.style.display = "none";
 contentNode.style.display = "grid";
+*/
+

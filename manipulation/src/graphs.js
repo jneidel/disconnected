@@ -86,7 +86,9 @@ const drawBar = ( id, data, correct ) => {
     const anwser = correct === "a" ? 0 : correct === "b" ? 1 : 2;
 
     const rects = graph.selectAll( "rect" );
-    d3.select( rects._groups[0][anwser] ).attr( "fill", "#0ed300" );
+    try {
+      d3.select( rects._groups[0][anwser] ).attr( "fill", "#FFC93C" );
+    } catch ( err ) {}
   }
 };
 

@@ -1,12 +1,35 @@
 const d3 = require( "d3" );
+const range = require( "py-range" );
 
-exports.prepBar = data => {
+const prepBar = ( id, content ) => {
+  const qid = id.match( /\d/ )[0];
+  const q = content[qid];
 
+  const data = [
+    {
+      x: 1,
+      y: q.a.l,
+    },
+    {
+      x: 2,
+      y: q.b.l,
+    },
+
+  ];
+  if ( q.c )
+    data.push( {
+      x: 3,
+      y: q.c.l,
+    }, );
+
+  return { data, correct: q.correct ? q.correct : null };
 };
 
-exports.bar = data => {
-  const graph = d3.select( "#graph" );
-  const WIDTH = 1000;
+const drawBar = ( id, data, correct ) => {
+  const qid = id.match( /\d/ )[0];
+
+  const graph = d3.select( `#${id}` );
+  const WIDTH = 500;
   const HEIGHT = 500;
   const MARGINS = {
     top   : 20,
@@ -53,12 +76,23 @@ exports.bar = data => {
     .attr( "y", d => yRange( d.y ) )
     .attr( "width", 50.980 )
     .attr( "height", d => HEIGHT - MARGINS.bottom - yRange( d.y ) )
-    .attr( "fill", "grey" )
-    .on( "mouseover", function paintBlue( d ) {
-      d3.select( this ).attr( "fill", "blue" );
-    } )
-    .on( "mouseout", function paintGrey( d ) {
-      d3.select( this ).attr( "fill", "grey" );
-    } );
+    .attr( "fill", "grey" );
+
+  if ( correct ) {
+    const anwser = correct === "a" ? 0 : correct === "b" ? 1 : 2;
+
+    const rects = graph.selectAll( "rect" );
+    d3.select( rects._groups[0][anwser] ).attr( "fill", "#0ed300" );
+  }
 };
 
+module.exports = ( content, bars ) => {
+  range( 0, bars.length ).forEach( bar => {
+    [ "a" /* , "b" */ ].forEach( side => {
+      const id = bars[bar][side].id;
+      const { data, correct } = prepBar( id, content );
+
+      drawBar( id, data, correct );
+    } );
+  } );
+};

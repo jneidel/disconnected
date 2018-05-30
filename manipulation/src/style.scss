@@ -8,19 +8,26 @@ body {
 
 #overlay {
   min-height: inherit;
-  //display: flex;
-  display: none;
+  display: flex;
+  // display: none;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 #overlay-ipt {
   width: 80vw;   
-  height: 80vh;
+  height: 60vh;
   margin: 5vh 5vw;
+}
+#overlay-submit {
+  width: 80vw;
+  height: 10vh;
+  margin: 5vh 5vw;
+  font-size: 55px;
 }
 
 #content {
-  // display: none;
+  display: none;
 }
 
 #grid {

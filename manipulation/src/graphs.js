@@ -86,13 +86,16 @@ const drawBar = ( id, data, correct ) => {
   }
 };
 
-module.exports = ( content, bars ) => {
+module.exports = ( content, bars, input ) => {
   range( 0, bars.length ).forEach( bar => {
-    [ "a" /* , "b" */ ].forEach( side => {
-      const id = bars[bar][side].id;
-      const { data, correct } = prepBar( id, content );
+    const ida = bars[bar].a.id;
+    const { data: dataa, correct } = prepBar( ida, content );
 
-      drawBar( id, data, correct );
-    } );
+    drawBar( ida, dataa, correct );
+
+    const idb = bars[bar].b.id;
+    const { data: datab } = prepBar( idb, input );
+
+    drawBar( idb, datab, correct );
   } );
 };

@@ -4,7 +4,7 @@ block styles
   link( rel="stylesheet" type="text/css" href="css/form.css" )
 
 block content
-  label( for="name" ) Wie heißt du? (zur Identifikation über Beamer)
+  label( for="name" ) Nenne ein Tier und eine Farbe (z.B: Rotes Huhn).
   input#name( type="text" )
   label( for="age" ) Wie alt bist du? 
   input#age( type="number" )
@@ -30,9 +30,6 @@ block content
         input#s-nf( type="checkbox" name="services" )
         label( for="s-nf" ) Netflix
       div
-        input#s-steam( type="checkbox" name="services" )
-        label( for="s-steam" ) Steam
-      div
         input#s-fortnite( type="checkbox" name="services" )
         label( for="s-fortnite" ) Fortnite
       div
@@ -41,14 +38,17 @@ block content
       div
         input#s-tv( type="checkbox" name="services" )
         label( for="s-tv" ) TV
-      //.group
+      div
+        input#s-wa( type="checkbox" name="services" )
+        label( for="s-wa" ) WhatsApp
+      //div
         input#s-( type="checkbox" name="services" )
         label( for="s-" )
   label(for="startingAge" style="padding-top: 40px;" ) Mit welchem Alter hast du mit der aktiven Nutzung von Medien begonnen?
   input#startingAge( type="number" )
   label(for="time") Wie viel Zeit verbringst du täglich mit Medien (in Minuten)?
   input#time( type="number")
-  label(for="silent") Welchen Teil des Tages ist dein Smartphone lautlos (in Prozent)?
+  label(for="silent") Welchen Teil des Tages ist dein Smartphone im Flugmodus (in Prozent)?
   input#silent( type="number")
   label(for="suitable") Wie viele Minuten Mediennutzung täglich hältst du für angemessen/gesund?
   input#suitable( type="number")

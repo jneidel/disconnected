@@ -14,7 +14,4 @@ const graphs = require( "./graphs" );
 
   const ageSilentData = graphs.generateData.ageSilent( rawData );
   graphs.scatterplot( ageSilentData, "ageSilent", 100 );
-
-  const ageSuitableData = graphs.generateData.ageSuitable( rawData );
-  graphs.scatterplot( ageSuitableData, "ageSuitable" );
 } )();

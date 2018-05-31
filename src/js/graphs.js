@@ -29,6 +29,7 @@ const generateData = {
       steam   : { name: "Steam", color: "#333" },
       cr      : { name: "Clash Royale", color: "#2dd100" },
       tv      : { name: "TV", color: "#000000" },
+      wa      : { name: "WhatsApp", color: "#6bcc33" },
     };
 
     const services = Object.keys( rawData )
@@ -54,10 +55,6 @@ const generateData = {
     range( 0, d.participants.length )
       .filter( x => d.participants[x].silent )
       .map( x => [ d.participants[x].age, d.participants[x].silent ] ),
-  ageSuitable: d =>
-    range( 0, d.participants.length )
-      .filter( x => d.participants[x].suitable )
-      .map( x => [ d.participants[x].age, d.participants[x].suitable ] ),
   suitableTime: d => [ { x: 1, y: d.suitable }, { x: 2, y: d.time } ],
 };
 exports.generateData = generateData;

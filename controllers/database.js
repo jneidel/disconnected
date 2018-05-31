@@ -20,7 +20,7 @@ exports.getAll = async db => {
     if ( cur.suitable )
       push.suitable = cur.suitable;
 
-    if ( Object.keys( push ) > 0 ) {
+    if ( Object.keys( push ).length > 0 ) {
       acc.participants.push( push );
     }
 

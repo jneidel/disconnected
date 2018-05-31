@@ -6,8 +6,27 @@ h1 {
   font-size: 50px;
 }
 
-#pie {
+svg {
   width: 1000px;
   height: 700px;
   padding: 30px 0;
+}
+
+.abs {
+  position: absolute;
+  margin: 0;
+}
+.rel {
+  position: relative;
+}
+
+.agey {
+  right: 400px;
+  top: 40px;
+  width: 200px;
+}
+.agex {
+  left: 485px;
+  top: 580px;
+  width: 100px;
 }

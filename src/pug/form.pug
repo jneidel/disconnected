@@ -38,6 +38,9 @@ block content
       div
         input#s-cr( type="checkbox" name="services" )
         label( for="s-cr" ) Clash Royale
+      div
+        input#s-tv( type="checkbox" name="services" )
+        label( for="s-tv" ) TV
       //.group
         input#s-( type="checkbox" name="services" )
         label( for="s-" )
@@ -45,6 +48,10 @@ block content
   input#startingAge( type="number" )
   label(for="time") Wie viel Zeit verbringst du täglich mit Medien (in Minuten)?
   input#time( type="number")
+  label(for="silent") Welchen Teil des Tages ist dein Smartphone lautlos (in Prozent)?
+  input#silent( type="number")
+  label(for="suitable") Wie viele Minuten Mediennutzung täglich hältst du für angemessen/gesund?
+  input#suitable( type="number")
   button#next Abschicken
 
 block scripts

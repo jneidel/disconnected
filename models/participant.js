@@ -19,7 +19,6 @@ const schema = new mongoose.Schema( {
   time: {
     type  : Number,
     verify: x => x > 0 && x < 1440,
-    alias : "timeSpent",
   },
   timestamp: {
     type   : Date,
@@ -27,6 +26,14 @@ const schema = new mongoose.Schema( {
   },
   services: {
     type: Array,
+  },
+  silent: {
+    type  : Number,
+    verify: x => x < 100 && x > 0,
+  },
+  suitable: {
+    type  : Number,
+    verify: x => x > 0 && x < 1440,
   },
 } );
 

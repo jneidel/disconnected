@@ -7,16 +7,7 @@ const u = require( "./utils" );
 // Routers
 
 router.post( "/create", async ( req, res ) => {
-  const data = {
-    name       : req.body.name,
-    age        : req.body.age,
-    gender     : req.body.male,
-    startingAge: req.body.startingAge,
-    time       : req.body.time,
-    services   : req.body.services,
-  };
-
-  const id = await db.create( User, data );
+  const id = await db.create( User, req.body );
 
   return res.json( { id, err: null } );
 } );

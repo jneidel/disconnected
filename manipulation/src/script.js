@@ -27,6 +27,7 @@ const parseInput = ipt => {
     }
     if ( q.match( /[^0-9;,:]/g ) ) {
       overlayIpt.value = `${ipt}\nBitte gib die Ergebnisse als Zahlen an und nutze ',/;/./:' zum trennen der Zahlen. Für ein Beispiel schreibe 'hilfe'.`;
+      console.log( q.match( /[^0-9;,:]/g ) );
       return null;
     }
     if ( !q.match( /;|,|\.|:/ ) ) {

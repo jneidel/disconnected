@@ -5,8 +5,25 @@ block styles
 
 block content
   h1 Statistiken für alle Teilnehmer
-  //svg#pie
-  svg#ageStartAge( width="1000" height="600" )
+  svg#pie
+  h2 Vergleich Alter und Start Alter
+  .rel
+    p.abs.agex Alter (Jahre)
+  .rel
+    p.abs.agey Start Alter (Jahre)
+  svg#ageStartAge
+  h2 Vergleich Alter und Handy auf Lautlos
+  .rel
+    p.abs.agex Alter (Jahre)
+  .rel
+    p.abs.agey Handy Lautlos (Prozent des Tages)
+  svg#ageSilent
+  h2 Vergleich Alter und angemessener Mediengebrauch
+  .rel
+    p.abs.agex Alter (Jahre)
+  .rel
+    p.abs.agey Mediengebrauch (min)
+  svg#ageSuitable
 
 block scripts
   script( src="js/all.js" )

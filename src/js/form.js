@@ -13,6 +13,8 @@ function getValues() {
     startingAge: byId( "startingAge" ).value,
     time       : byId( "time" ).value,
     services,
+    silent     : byId( "silent" ).value,
+    suitable   : byId( "suitable" ).value,
   };
 }
 

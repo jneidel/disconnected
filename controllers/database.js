@@ -6,35 +6,34 @@ exports.create = async ( db, data ) => {
 };
 
 exports.getAll = async db => {
-  const rawData = await db.aggregate( [
-    { $match: {} },
-    { $project: {
-      _id        : 0,
-      age        : 1,
-      gender     : 1,
-      startingAge: 1,
-      time       : 1,
-      timestamp  : 1,
-      services   : 1,
-    } },
-  ] );
+  const rawData = await db.aggregate( [ { $match: {} } ] );
 
   const data = rawData.reduce( ( acc, cur ) => {
-    if ( cur.age )
-      acc.ages.push( cur.age );
-
-    if ( cur.startingAge )
-      acc.startingAges.push( cur.startingAge );
-
-    if ( cur.time )
-      acc.times.push( cur.time );
+    if ( cur.age && cur.startingAge && cur.silent && cur.suitable )
+      acc.participants.push( {
+        age        : cur.age,
+        startingAge: cur.startingAge,
+        silent     : cur.silent,
+        suitable   : cur.suitable,
+      } );
+    else if ( cur.age && cur.startingAge && cur.silent )
+      acc.participants.push( {
+        age        : cur.age,
+        startingAge: cur.startingAge,
+        silent     : cur.silent,
+      } );
+    else if ( cur.age && cur.startingAge )
+      acc.participants.push( {
+        age        : cur.age,
+        startingAge: cur.startingAge,
+      } );
 
     if ( cur.services )
       cur.services.forEach( service =>
         acc.services[service] = acc.services[service] ? acc.services[service] + 1 : 1 );
 
     return acc;
-  }, { ages: [], services: {}, startingAges: [], times: [] } );
+  }, { services: {}, participants: [] } );
 
   return data;
 };

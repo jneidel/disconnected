@@ -5,13 +5,15 @@ block styles
 
 block content
   h1 Statistiken für #{name}
-  h2.medien-alter Mediengebrauch auf Lebenszeit, basieren auf aktueller Nutzung
-  div.medien-alter( style="position: absolute;" )
+  h2 Mediengebrauch auf Lebenszeit, basieren auf aktueller Nutzung
+  div( style="position: absolute;" )
     p#line-x Medienverbrauch (min)
-  div.medien-alter( style="position: absolute;" )
+  div( style="position: absolute;" )
     p#line-y Alter (Jahre)
-  svg#graph.medien-alter( width="1000" height="600" )
-  p#nutzung.medien-alter
+  svg#graph( width="1000" height="600" )
+  p#nutzung
+  h2( style="padding-top: 20px;") Vergleich für dich <span style="color: #FFC93C;">angemessener Nutzung</span> und <span style="color: #FC3A52;">aktuller Nutzung</span> (in min)
+  svg#suitableTime( width="400" height="400" )
 
 block scripts
   script( src="js/stats.js" )

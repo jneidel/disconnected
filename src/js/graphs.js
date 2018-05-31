@@ -28,6 +28,7 @@ const generateData = {
       nf      : { name: "Netflix", color: "#b21111" },
       steam   : { name: "Steam", color: "#333" },
       cr      : { name: "Clash Royale", color: "#2dd100" },
+      tv      : { name: "TV", color: "#000000" },
     };
 
     const services = Object.keys( rawData )
@@ -46,11 +47,18 @@ const generateData = {
 
     return data;
   },
-  ageStartAge: rawData => {
-    const data = range( 0, rawData.ages.length ).map( x => [ rawData.ages[x], rawData.startingAges[x] ] );
-
-    return data;
-  },
+  ageStartAge: d =>
+    range( 0, d.participants.length )
+      .map( x => [ d.participants[x].age, d.participants[x].startingAge ] ),
+  ageSilent: d =>
+    range( 0, d.participants.length )
+      .filter( x => d.participants[x].silent )
+      .map( x => [ d.participants[x].age, d.participants[x].silent ] ),
+  ageSuitable: d =>
+    range( 0, d.participants.length )
+      .filter( x => d.participants[x].suitable )
+      .map( x => [ d.participants[x].age, d.participants[x].suitable ] ),
+  suitableTime: d => [ { x: 1, y: d.suitable }, { x: 2, y: d.time } ],
 };
 exports.generateData = generateData;
 
@@ -158,7 +166,7 @@ exports.pie = ( rawData, id ) => {
   } );
 };
 
-exports.scatterplot = ( data, id ) => {
+exports.scatterplot = ( data, id, maxY = null ) => {
   const svg = d3.select( `#${id}` );
   const WIDTH = 1000;
   const HEIGHT = 600;
@@ -175,7 +183,7 @@ exports.scatterplot = ( data, id ) => {
     .nice();
 
   const yScale = d3.scaleLinear()
-    .domain( [ 0, d3.max( data, ( d ) => { return d[1]; } ) ] )
+    .domain( [ 0, maxY ? maxY : d3.max( data, ( d ) => { return d[1]; } ) ] )
     .range( [ HEIGHT - MARGINS.top, MARGINS.bottom ] )
     .nice();
 
@@ -209,4 +217,66 @@ exports.scatterplot = ( data, id ) => {
     .attr( "r", ( d ) => {
       return rScale( d[1] );
     } );
+};
+
+exports.bar = ( data, id ) => {
+  const graph = d3.select( `#${id}` );
+  const WIDTH = 250;
+  const HEIGHT = 400;
+  const MARGINS = {
+    top   : 20,
+    right : 20,
+    bottom: 30,
+    left  : 50,
+  };
+
+  let xRange = d3.scaleLinear()
+    .range( [ MARGINS.left, WIDTH - MARGINS.right ] )
+    .domain( [
+      d3.min( data, d => d.x ),
+      d3.max( data, d => d.x ),
+    ] );
+  let yRange = d3.scaleLinear()
+    .range( [ HEIGHT - MARGINS.top, MARGINS.bottom ] )
+    .domain( [
+      d3.min( data, d => d.y ),
+      d3.max( data, d => d.y ),
+    ] );
+
+  const xAxis = d3.axisBottom( xRange ).ticks( 0, d3.format( ",.0f" ) );
+  const yAxis = d3.axisLeft( yRange ).ticks( 5, d3.format( ",.0f" ) );
+
+  graph.append( "svg:g" )
+    .attr( "class", "x axis" )
+    .attr( "transform", `translate(0,${HEIGHT - MARGINS.bottom})` )
+    .call( xAxis );
+
+  graph.append( "svg:g" )
+    .attr( "class", "y axis" )
+    .attr( "transform", `translate(${MARGINS.left},0)` )
+    .call( yAxis );
+
+  yRange = d3.scaleLinear()
+    .range( [ HEIGHT - MARGINS.top, MARGINS.bottom ] )
+    .domain( [ 0, d3.max( data, d => d.y ) ] );
+  xRange = d3.scaleBand()
+    .rangeRound( [ MARGINS.left, WIDTH - MARGINS.right ] )
+    .padding( 0.1 )
+    .domain( data.map( d => d.x ) );
+
+  graph.selectAll( "rect" )
+    .data( data )
+    .enter()
+    .append( "rect" )
+    .attr( "x", d => xRange( d.x ) )
+    .attr( "y", d => yRange( d.y ) )
+    .attr( "width", 50.980 )
+    .attr( "height", d => HEIGHT - MARGINS.bottom - yRange( d.y ) )
+    .attr( "fill", "grey" );
+
+  const rects = graph.selectAll( "rect" );
+  try {
+    d3.select( rects._groups[0][0] ).attr( "fill", "#FFC93C" );
+    d3.select( rects._groups[0][1] ).attr( "fill", "#FC3A52" );
+  } catch ( err ) {}
 };

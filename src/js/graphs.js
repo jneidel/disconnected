@@ -46,6 +46,11 @@ const generateData = {
 
     return data;
   },
+  ageStartAge: rawData => {
+    const data = range( 0, rawData.ages.length ).map( x => [ rawData.ages[x], rawData.startingAges[x] ] );
+
+    return data;
+  },
 };
 exports.generateData = generateData;
 
@@ -73,8 +78,8 @@ exports.insertDots = insertDots;
 
 exports.line = ( data, id ) => {
   const graph = d3.select( `#${id}` );
-  const WIDTH = 1200;
-  const HEIGHT = 700;
+  const WIDTH = 1000;
+  const HEIGHT = 600;
   const MARGINS = {
     top   : 20,
     right : 20,
@@ -151,4 +156,57 @@ exports.pie = ( rawData, id ) => {
     },
     data,
   } );
+};
+
+exports.scatterplot = ( data, id ) => {
+  const svg = d3.select( `#${id}` );
+  const WIDTH = 1000;
+  const HEIGHT = 600;
+  const MARGINS = {
+    top   : 20,
+    right : 30,
+    bottom: 40,
+    left  : 20,
+  };
+
+  const xScale = d3.scaleLinear()
+    .domain( [ 0, d3.max( data, ( d ) => { return d[0]; } ) ] )
+    .range( [ MARGINS.left, WIDTH - MARGINS.right ] )
+    .nice();
+
+  const yScale = d3.scaleLinear()
+    .domain( [ 0, d3.max( data, ( d ) => { return d[1]; } ) ] )
+    .range( [ HEIGHT - MARGINS.top, MARGINS.bottom ] )
+    .nice();
+
+  const rScale = d3.scaleLinear()
+    .domain( [ 0, d3.max( data, ( d ) => { return d[1]; } ) ] )
+    .range( [ 2, 5 ] );
+
+  const xAxis = d3.axisBottom( xScale ).ticks( 5 );
+  const yAxis = d3.axisRight( yScale ).ticks( 5 );
+
+  svg.append( "svg:g" )
+    .attr( "class", "axis" )
+    .attr( "transform", `translate(0,${HEIGHT - MARGINS.bottom})` )
+    .call( xAxis );
+
+  svg.append( "svg:g" )
+    .attr( "class", "axis" )
+    .attr( "transform", `translate(${MARGINS.left},0)` )
+    .call( yAxis );
+
+  svg.selectAll( "circle" )
+    .data( data )
+    .enter()
+    .append( "circle" )
+    .attr( "cx", ( d ) => {
+      return xScale( d[0] );
+    } )
+    .attr( "cy", ( d ) => {
+      return yScale( d[1] );
+    } )
+    .attr( "r", ( d ) => {
+      return rScale( d[1] );
+    } );
 };

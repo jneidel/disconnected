@@ -9,24 +9,20 @@ exports.getAll = async db => {
   const rawData = await db.aggregate( [ { $match: {} } ] );
 
   const data = rawData.reduce( ( acc, cur ) => {
-    if ( cur.age && cur.startingAge && cur.silent && cur.suitable )
-      acc.participants.push( {
-        age        : cur.age,
-        startingAge: cur.startingAge,
-        silent     : cur.silent,
-        suitable   : cur.suitable,
-      } );
-    else if ( cur.age && cur.startingAge && cur.silent )
-      acc.participants.push( {
-        age        : cur.age,
-        startingAge: cur.startingAge,
-        silent     : cur.silent,
-      } );
-    else if ( cur.age && cur.startingAge )
-      acc.participants.push( {
-        age        : cur.age,
-        startingAge: cur.startingAge,
-      } );
+    const push = {};
+
+    if ( cur.age )
+      push.age = cur.age;
+    if ( cur.startingAge )
+      push.startingAge = cur.startingAge;
+    if ( cur.silent )
+      push.silent = cur.silent;
+    if ( cur.suitable )
+      push.suitable = cur.suitable;
+
+    if ( Object.keys( push ) > 0 ) {
+      acc.participants.push( push );
+    }
 
     if ( cur.services )
       cur.services.forEach( service =>

@@ -10,7 +10,7 @@ const graphs = require( "./graphs" );
   if ( rawData.age ) {
     const lineData = graphs.generateData.ageToTime( rawData );
 
-    graphs.line( lineData );
+    graphs.line( lineData, "graph" );
 
     const timeLeft = 81 - rawData.age;
     if ( timeLeft > 10 ) {

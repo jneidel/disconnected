@@ -71,8 +71,8 @@ function insertDots( str, seperator = ".", splitAt = 3 ) {
 }
 exports.insertDots = insertDots;
 
-exports.line = data => {
-  const graph = d3.select( "#graph" );
+exports.line = ( data, id ) => {
+  const graph = d3.select( `#${id}` );
   const WIDTH = 1200;
   const HEIGHT = 700;
   const MARGINS = {
@@ -125,10 +125,10 @@ exports.line = data => {
     .each( ( d, i ) => d3.select( this ).style( "font-size", 30 ) );
 };
 
-exports.pie = rawData => {
+exports.pie = ( rawData, id ) => {
   const data = generateData.servicesPie( rawData.services );
 
-  const pie = new d3pie( "pie", {
+  const pie = new d3pie( id, {
     header: {
       title: {
         text    : "Meistgenutzten Services",

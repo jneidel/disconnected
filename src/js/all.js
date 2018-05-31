@@ -5,5 +5,5 @@ const graphs = require( "./graphs" );
   const rawData = await axios.get( `/api/get-all` )
     .then( response => response.data.data );
 
-  graphs.pie( rawData );
+  graphs.pie( rawData, "pie" );
 } )();

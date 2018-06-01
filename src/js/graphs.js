@@ -33,7 +33,8 @@ const generateData = {
     };
 
     const services = Object.keys( rawData )
-      .map( service => ( { value: rawData[service], name: fullServices[service].name, color: fullServices[service].color } ) );
+      .map( service => ( { value: rawData[service], name: fullServices[service].name, color: fullServices[service].color } ) )
+      .filter( service => service.name !== "Fortnite" && service.name !== "Clash Royale" );
 
     const data = {
       content  : [],

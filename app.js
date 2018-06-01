@@ -17,7 +17,7 @@ const app = express();
 
 if ( NODE_ENV === "dev" ) {
   app.use( logger.dev );
-} if ( NODE_ENV === "production" ) {
+} if ( NODE_ENV === "prod" ) {
   app.use( logger.writeErrors );
   app.use( logger.writeRequests );
 }

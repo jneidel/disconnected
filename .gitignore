@@ -4,6 +4,7 @@ public/css
 *.env
 todo.md
 manipulation/dist
+logs/*.log
 
 readme.md
 license
